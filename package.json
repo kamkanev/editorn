@@ -1,0 +1,38 @@
+{
+  "name": "Editorn",
+  "version": "1.0.0",
+  "description": "IDE for many programming languages.",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dist:linux": "electron-builder --linux"
+  },
+  "keywords": [
+    "Electron",
+    "Editorn"
+  ],
+  "author": "Kamen Kanev <kamkanev@gmail.com>",
+  "license": "CC0-1.0",
+  "devDependencies": {
+    "electron": "^7.1.7",
+    "electron-builder": "^21.2.0"
+  },
+  "dependencies": {
+    "bootstrap": "^4.4.1",
+    "electron-packager": "^14.1.1",
+    "fs": "0.0.1-security",
+    "popper.js": "^1.16.0"
+  },
+  "build": {
+    "appId": "com.kamkanev.editorn",
+    "linux": {
+      "target": [
+        "deb",
+        "snap",
+        "rpm"
+      ],
+      "category": "Development",
+      "icon": "logo2.png"
+    }
+  }
+}

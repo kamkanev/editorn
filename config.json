@@ -1,0 +1,10 @@
+{
+  "dest": "dist/installers/",
+  "icon": "logo.png",
+  "categories": [
+    "Development"
+  ],
+  "lintianOverrides": [
+    "changelog-file-missing-in-native-package"
+  ]
+}

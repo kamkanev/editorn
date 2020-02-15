@@ -31,6 +31,7 @@
         "snap",
         "rpm"
       ],
+      "homepage": "https://sourceforge.net/projects/editorn/",
       "category": "Development",
       "icon": "logo2.png"
     }

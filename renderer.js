@@ -175,6 +175,7 @@ async function selectLanguage(){
 	    mysql: 'Mysql',
 			javascript: "JavaScript",
 			css: "CSS",
+			json: "JSON",
 			plain_text: "Plain text"
 	  },
 	  inputPlaceholder: 'Select a language',
@@ -380,6 +381,8 @@ function auto_detect_lang(filename) {
 		editor.session.setMode("ace/mode/java");
 	}else if(n == "css"){
 		editor.session.setMode("ace/mode/css");
+	}else if(n == "json"){
+		editor.session.setMode("ace/mode/json");
 	}
 
 }

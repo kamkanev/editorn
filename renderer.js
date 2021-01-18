@@ -14,6 +14,7 @@ const {BrowserWindow} = require('electron').remote;
 const {dialog} = require('electron').remote
 const path = require('path');
 const fs = require('fs');
+const { exec } = require('child_process');
 var Menu = require('electron').remote.Menu;
 
 var mainWindow;
@@ -79,7 +80,19 @@ let tempMenu1 = [
 					toggleWOrldwarp();
 				},
 				accelerator: "Alt+Shift+W"
-			}
+			},
+		]
+  },
+	{
+    label: "Run",
+		submenu: [
+			{
+				label: "Run",
+				click(){
+					execode();
+				},
+				accelerator: "CmdOrCtrl+F5"
+			},
 		]
   },
   {
@@ -389,4 +402,50 @@ function auto_detect_lang(filename) {
 
 function toggleWOrldwarp() {
 	editor.setOption("wrap",  editor.getOption("wrap") == "off")
+}
+
+function execode(){
+
+var cmd = "cd " + getFileDir() + " && gcc "+ getFile() +" -lstdc++ -o "+getFileName();
+
+var newTerminal = `gnome-terminal -e 'sh -c "`+cmd+`; sleep 10"''`;
+
+	exec(cmd + ` && gnome-terminal -e 'sh -c "./`+getFileName()+`; sleep 10"'`, (err, stdout, stderr) => {
+		if (err) {
+			// node couldn't execute the command
+			return;
+		}
+
+		// the *entire* stdout and stderr (buffered)
+		console.log('stdout: ' + stdout);
+		console.log('stderr: ' + stderr);
+
+	});
+}
+
+function getFileName(){
+	if(oFilePath != null){
+		var str = oFilePath.split("/");
+		var name = str[str.length-1].split(".")[0];
+
+		return name;
+	}
+}
+
+function getFile(){
+	if(oFilePath != null){
+		var str = oFilePath.split("/");
+		return str[str.length-1];
+	}
+}
+
+function getFileDir(){
+	if(oFilePath != null){
+		var str = oFilePath.split("/");
+		var newStr = "";
+		for (var i = 0; i < str.length-1; i++) {
+			newStr += str[i]+"/";
+		}
+		return newStr;
+	}
 }
